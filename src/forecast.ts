@@ -1,20 +1,5 @@
 import { ForecastError, ForecastObject } from './types/forecast.d';
-// api key e64cd630d96d952107ecd3d2609d3b78
-// http://api.weatherstack.com/
 
-// Current Weather API Endpoint
-
-// http://api.weatherstack.com/current
-//     ? access_key = YOUR_ACCESS_KEY
-//     & query = New York
-    
-// // optional parameters: 
-
-//     & units = m
-//     & language = en
-//     & callback = MY_CALLBACK
-
-const request = require('postman-request');
 const fetch = require('node-fetch');
 
 export function getForecast(location: string): Promise<ForecastError | ForecastObject> {

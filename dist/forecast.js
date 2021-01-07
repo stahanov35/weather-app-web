@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isForecastError = exports.getForecast = void 0;
-var request = require('postman-request');
 var fetch = require('node-fetch');
 function getForecast(location) {
     var errorMessage = { error: 'API request has failed.' };

@@ -20,12 +20,6 @@ form.addEventListener('submit', (e) => {
     getForecast(location).then(data => secondMessage.textContent = data.forecast || data.error);
 })
 
-// fetch('http://puzzle.mead.io/puzzle').then(response => {
-//     response.json().then(data => console.log(data));
-// })
-
-// getForecast('Kharkiv').then(data => console.log(data));
-
 function getForecast(location) {
     var errorMessage = { error: 'API request has failed.' };
     if (!location) {
