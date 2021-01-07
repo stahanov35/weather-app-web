@@ -9,6 +9,7 @@ var hbs_1 = __importDefault(require("hbs"));
 var forecast_1 = require("./forecast");
 var resources_enum_1 = require("./resources.enum");
 var server = express_1.default();
+var port = process.env.PORT || 3001;
 console.log('Start ...');
 var publicDir = path_1.default.join(path_1.default.dirname(__dirname), resources_enum_1.RECOURCES.PUBLIC);
 var templatesPath = path_1.default.join(path_1.default.dirname(__dirname), resources_enum_1.RECOURCES.TEMPLATES);
@@ -37,9 +38,9 @@ server.get('/help', function (req, res) {
 });
 server.get('/weather', function (req, res) {
     if (!req.query.address) {
-        res.render('weather', {
-            title: 'Weather page',
-            error: 'Error'
+        res.send({
+            forecast: 'None',
+            location: 'None'
         });
         return;
     }
@@ -49,8 +50,7 @@ server.get('/weather', function (req, res) {
                 res.send(forecastData);
                 return;
             }
-            res.render('weather', {
-                title: 'Weather page',
+            res.send({
                 forecast: forecastData.forecast,
                 location: req.query.address
             });
@@ -59,18 +59,6 @@ server.get('/weather', function (req, res) {
     catch (e) {
         console.error(e);
     }
-});
-server.get('/products', function (req, res) {
-    console.log(req.query);
-    if (!req.query.search) {
-        res.send({
-            error: 'Please provide a search query'
-        });
-        return;
-    }
-    res.send({
-        products: []
-    });
 });
 server.get('/help/*', function (req, res) {
     res.render('404', {
@@ -82,7 +70,7 @@ server.get('*', function (req, res) {
         errorMessage: 'Page not found'
     });
 });
-server.listen(3001, function () {
-    console.log('Server is up on port 3001.');
+server.listen(port, function () {
+    console.log("Server is up on port " + port + ".");
 });
 //# sourceMappingURL=app.js.map

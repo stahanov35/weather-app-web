@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="/styles/styles.css">
-    <script src="/js/main.js"></script>
 </head>
 <body>
     {{>header}}
-    <p>{{name}}</p>
-    <img src="/images/snow.png" alt="snow">
+    <h4>Use this site to get the weather</h4>
+    <form action="">
+        <input type="text" name="location" id="" placeholder="Location">
+        <button type="submit">Search</button>
+    </form>
+    <hr>
+    <p id="message1"></p>
+    <p id="message2"></p>
+
     {{>footer}}
+    <script src="/js/main.js"></script>
 </body>
 </html>

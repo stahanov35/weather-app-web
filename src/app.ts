@@ -1,14 +1,13 @@
 import path from 'path';
 import express from 'express';
 import hbs from 'hbs';  
-// local modules
 import { getForecast, isForecastError } from './forecast';
 import { RECOURCES } from './resources.enum';
-import {ForecastError, ForecastObject} from './types/forecast';
 
 import { Request, Response } from 'express';
 
 const server = express();
+const port = process.env.PORT || 3001;
 
 console.log('Start ...');
 const publicDir = path.join(path.dirname(__dirname), RECOURCES.PUBLIC);
@@ -43,9 +42,9 @@ server.get('/help', (req: Request, res: Response) => {
 
 server.get('/weather', (req: Request, res: Response) => {
     if (!req.query.address) {
-        res.render('weather', {
-            title: 'Weather page',
-            error: 'Error'
+        res.send({
+            forecast: 'None',
+            location: 'None'
         });
 
         return;
@@ -59,10 +58,7 @@ server.get('/weather', (req: Request, res: Response) => {
                 return;
             }
         
-            // res.send(forecastData)
-        
-            res.render('weather', {
-                title: 'Weather page',
+            res.send({
                 forecast: forecastData.forecast,
                 location: req.query.address
             })
@@ -71,20 +67,6 @@ server.get('/weather', (req: Request, res: Response) => {
     } catch (e) {
         console.error(e);
     }
-})
-
-server.get('/products', (req: Request, res: Response) => {
-    console.log(req.query);
-    if (!req.query.search) {
-        res.send({
-            error: 'Please provide a search query'
-        });
-
-        return;
-    }
-    res.send({
-        products: []
-    })
 })
 
 server.get('/help/*', (req: Request, res: Response) => {
@@ -99,11 +81,6 @@ server.get('*', (req: Request, res: Response) => {
     })
 })
 
-
-// server.com
-// server.com/help
-// server.com/about
-
-server.listen(3001, () => {
-    console.log('Server is up on port 3001.');
+server.listen(port, () => {
+    console.log(`Server is up on port ${port}.`);
 })

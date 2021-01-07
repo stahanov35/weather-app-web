@@ -18,7 +18,6 @@ function getForecast(location) {
                 };
             }
             var current = data.current;
-            debugger;
             return {
                 forecast: current.weather_descriptions[0] + ". It is curently " + current.temperature + " \n                        degress out. It feels like " + current.feelslike + " degress out."
             };
