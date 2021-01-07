@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "CommonJS",
+        "lib": ["ES2017"],
+        "moduleResolution": "node",
+
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "typeRoots": ["./types", "./node-modules/@types"],
+        "outDir": "dist",
+        "rootDir": "src"
+    },
+    "display": "Recommended",
+    "exclude": ["node_modules"]
+  }
